@@ -4,62 +4,83 @@
 **Author:** Marcelo Valentim Silva  
 **University:** Curtin University, Perth, Western Australia
 
-This repository contains the research code, retained inputs, generated workbooks, prompts, execution records, selected dataset-level outputs, figures, and supporting documentation associated with the Statistical Audit and operational Data Quality Assessment evaluation reported in Chapter 6 of the PhD thesis *Attribute-Based Approach for Semantic Type Detection and Data Quality Assessment in Diverse Data Sources and Domains*.
+This repository contains the research code, retained inputs, generated workbooks, execution records, selected dataset-level outputs, and supporting documentation associated with the Statistical Audit and operational Data Quality Assessment evaluation reported in Chapter 6 of the PhD thesis.
 
 The repository covers two complementary components:
 
 1. the Statistical Audit of large-scale Semantic Type Detection assignments over the Kaggle + VizNet corpus; and
-2. the empirical operational evaluation of the HeadersIQ Data Quality Assessment component, including runtime analysis, detailed dataset cases, HeadersIQ sensitivity analysis, and evidence from the public HeadersIQ Code Runner.
+2. the empirical operational evaluation of the HeadersIQ Data Quality Assessment component, including forty retained successful executions, ten detailed dataset cases, identifier-role sensitivity analysis, and evidence from the public HeadersIQ Code Runner.
 
-## Chapter 6 scope
+## Statistical Audit scope
 
-### Statistical Audit
-
-The Statistical Audit begins with Kaggle + VizNet Universe B, which contains 118,639 attribute records.
+The Statistical Audit begins with Kaggle + VizNet Universe B, containing 118,639 attribute records.
 
 - 102,205 columns received one of the 39 available `FinalFormat` assignments.
-- 16,434 columns had no assigned `FinalFormat` and were outside the semantic-assignment approval estimate.
-- The `FinalFormat`-assigned universe was partitioned into:
-  - 53,763 strict trivial columns; and
-  - 48,442 non-trivial columns requiring scrutiny.
+- 16,434 columns had no assigned `FinalFormat` and were outside the FinalFormat-assignment audit.
+- The FinalFormat-assigned universe was partitioned into 53,763 strict trivial columns and a non-trivial universe of 48,442 columns.
 - A finite-population, area-and-abbreviation-stratified probability sample of 2,288 columns was drawn from the non-trivial universe.
 - Seven purposively selected rare-format cases were added for diagnostic coverage.
 - The complete reviewed set therefore contains 2,295 columns.
 
-The 2,288-column probability sample supports inferential estimation. The seven additional cases support format-level diagnostic analysis.
+The original 2,288-column probability sample supports inferential estimation. The seven additional cases support diagnostic coverage of rare FinalFormats.
 
-### GPT-assisted review
+## GPT-assisted reviews
+
+### Main 2,295-column Statistical Audit review
 
 The main review protocol was developed through an initial 300-row pilot and then frozen. The complete set of 2,295 reviewed rows, including the original pilot cases, was subsequently processed in batches of a few hundred rows using the same final standardised prompt.
 
-The review was conducted through the standard ChatGPT web interface. The retained prompt, batching procedure, source fields, completed `GPT_*` fields, and analysis workbooks provide procedural traceability. Repeating the model-assisted review is not guaranteed to produce identical judgements.
+The completed outputs are retained in:
 
-### Operational DQA evaluation
+- `dataProducts/GPTOutputsOn2295.xlsx`
+- `dataProducts/GPTAnalysisOn2295.xlsx`
 
-The operational study examines forty retained successful HeadersIQ executions covering 88,856,947 analysed cells. It evaluates observed end-to-end runtime, throughput, dataset-size effects, validation-profile differences, reported DQI outcomes, and HeadersIQ behaviour.
+### Focused 795-row abbreviation re-audit
 
-The study measures elapsed time conditional on successful execution. It does not estimate platform failure rates, run-completion probability, robustness to malformed inputs, or expected time including retries.
+A second GPT-assisted review was conducted after the disagreement analysis identified eleven suspicious abbreviation mappings.
 
-### Detailed DQA cases
+The eleven mappings were matched against the full Kaggle + VizNet superset, producing a 795-row targeted slice. All 795 rows were reviewed using the final standardised abbreviation re-audit prompt. The retained outputs include the row-level `GPT_abbrev_decision` fields and the aggregate decision and suggested-interpretation summaries.
 
-Ten datasets were selected for detailed analysis because they provide contrasting evidence concerning:
+The completed outputs are retained in:
 
-- successful format-specific validation;
-- direct data conditions;
-- semantic-assignment propagation;
-- context-dependent validation rules;
-- identifier roles;
-- conditional missingness;
-- unsupported semantic coverage;
-- score sensitivity; and
-- substantial validation workload without reported DQIs.
+- `dataProducts/K_V_superset_suspicious_abbrev.xlsx`
+- `dataProducts/abbrev_review_summary.xlsx`
 
-The detailed review is supported by nineteen dataset-level artefacts:
+Both GPT-assisted reviews were conducted through the standard ChatGPT web interface. Their retained prompts, batching procedures, source fields, completed GPT fields, and output workbooks provide procedural traceability. Repeating either model-assisted review is not guaranteed to produce identical judgements.
+
+The final standardised prompts are reproduced in Appendix 6.1 for the 2,295-column Statistical Audit and Appendix 6.2 for the 795-row abbreviation re-audit. They are not duplicated in this repository.
+
+## Operational DQA evaluation
+
+The operational study examines forty retained successful HeadersIQ executions covering 88,856,947 analysed cells. It evaluates observed end-to-end execution time, throughput, dataset-size effects, validation-profile differences, reported DQI outcomes, and HeadersIQ behaviour.
+
+The operational statistical analysis, detailed cross-case interpretation, and identifier-role sensitivity analysis were conducted through ChatGPT-assisted research sessions using the retained execution log and dataset-level outputs as inputs. This repository preserves those source materials and final evidence. It does not claim the existence of a separate executable analysis program where no such program was retained.
+
+The study measures elapsed time conditional on successful execution. It does not estimate platform failure rates, run-completion probability, robustness to malformed inputs, or expected execution time including retries.
+
+## Detailed DQA cases
+
+Ten datasets were selected for detailed analysis:
+
+1. Household Power Consumption
+2. Ecommerce Events
+3. Online Retail
+4. TMDB Movies
+5. F1 Pit Stops
+6. Hotel Bookings
+7. Doctoralia Brasil
+8. NFL Fantasy Data
+9. Samsung Heart Rate
+10. 622 UCI Datasets
+
+The review is supported by nineteen dataset-level files:
 
 - ten Discoveries documents; and
 - nine DQA summary workbooks.
 
 Samsung Heart Rate did not generate a DQA summary workbook because no DQI was reported.
+
+Only the latest version corresponding to the retained Chapter 6 execution should be archived for each dataset.
 
 ## HeadersIQ Code Runner
 
@@ -76,79 +97,29 @@ The user-facing path includes:
 7. dataset-level result reporting; and
 8. download of generated outputs when available.
 
-The public interface and its supporting artefacts correspond to the implementation elements reported in Table 6.17 of the thesis:
+The public implementation elements reported in Chapter 6 include the HeadersIQ entry page, the Code Runner, its User Guide, local and Kaggle input options, the current lexical resources, enabled processing stages, automatic header checking, Discoveries documents, DQA summary workbooks, and supporting execution files.
 
-- the HeadersIQ public entry page;
-- the Code Runner interface;
-- the Appendix 6.3 User Guide;
-- local-upload and Kaggle input options;
-- the current Formats Dictionary and Abbreviations Dictionary;
-- the enabled processing stages;
-- automatic header checking;
-- Discoveries documents;
-- DQA summary workbooks; and
-- supporting code and execution files.
+This repository preserves the Chapter 6 evaluation evidence associated with the Code Runner. The deployed application and production environment are maintained separately. Production credentials, server secrets, uploaded user data, temporary generated files, and environment-specific security configuration are not included here.
 
-The Code Runner itself is deployed separately from this research-artefact repository. This repository preserves the Chapter 6 documentation and evaluation evidence associated with the user-facing implementation, including the User Guide, execution records, selected generated outputs, runtime analysis, and detailed case evidence.
+## Repository contents
 
-The application source code does not need to be duplicated in this repository when it is maintained in a separate HeadersIQ implementation repository. Before the final release, add the public source-code repository link in the Related Resources section if a sanitised version is available. Production credentials, server secrets, uploaded user data, temporary generated files, and environment-specific security configuration must not be published.
+### `code`
 
-## Repository structure
+#### `Attribute-BasedSemanticTypeDetectionDBKG.ipynb`
 
-```text
-Statistical-Audit-and-DQA-Evaluation/
-├── README.md
-├── code/
-│   ├── DeepAnalysis_on118K.ipynb
-│   └── operationalDQA/
-│       ├── RuntimeAnalysis.ipynb
-│       ├── HeadersIQSensitivityAnalysis.ipynb
-│       └── supporting_scripts/
-├── dataInputs/
-│   ├── AnalysedColumnsKaggleViznetFiltered.xlsx
-│   └── operationalDQA/
-│       └── All_DQA_Execution_Log_Comparison.xlsx
-├── dataProducts/
-│   ├── GPTAnalysisOn2295.xlsx
-│   ├── GPTOutputsOn2295.xlsx
-│   ├── K_V_superset_suspicious_abbrev.xlsx
-│   ├── KaggleViznet_95CI_StatAudit_UniverseAndSample.xlsx
-│   ├── abbrev_review_summary.xlsx
-│   └── operationalDQA/
-│       ├── executionAnalysis/
-│       ├── detailedCases/
-│       │   ├── discoveries/
-│       │   └── dqaSummaries/
-│       ├── figures/
-│       └── identifierRoleSensitivity/
-├── prompts/
-│   ├── Appendix6_1_Final_Statistical_Audit_Prompt.txt
-│   └── Appendix6_2_Abbreviation_Reaudit_Prompt.txt
-└── documentation/
-    ├── Appendix6_3_HeadersIQ_Code_Runner_User_Guide.pdf
-    ├── Chapter6_Artefact_Manifest.md
-    └── Reproduction_Notes.md
-```
+Upstream Semantic Table Interpretation notebook retained because Chapter 6 directly depends on the abbreviation information it generates.
 
-The folder names above define the intended final structure. Some folders should be created only when their corresponding Chapter 6 files are uploaded.
+Its `preprocess_columns` function produces:
 
-## Upstream Chapter 5 processing
+- `abbrev_clean`
+- `abbrev_desc`
+- `abbrev_clean_analysis`
 
-The Statistical Audit uses the consolidated Kaggle + VizNet semantic-assignment output produced by the header-centric Semantic Type Detection pipeline reported in Chapter 5.
+These fields are propagated into the `abbrev_used` indicator employed in the Statistical Audit stratification and abbreviation-risk analysis.
 
-The upstream Semantic Type Detection, SemTab metadata, and Knowledge Graph processing notebooks belong to the Chapter 5 research materials and are not duplicated here.
+The notebook originated in the preceding Semantic Type Detection work but remains a direct computational dependency of Chapter 6.
 
-The retained Chapter 6 input is:
-
-- `dataInputs/AnalysedColumnsKaggleViznetFiltered.xlsx`
-
-This workbook contains the consolidated attribute-level records from which the Chapter 6 audit universes, probability sample, and rare-format diagnostic cases were constructed.
-
-## Statistical Audit files
-
-### Code
-
-#### `code/DeepAnalysis_on118K.ipynb`
+#### `DeepAnalysis_on118K.ipynb`
 
 Main Statistical Audit notebook used for:
 
@@ -161,21 +132,38 @@ Main Statistical Audit notebook used for:
 - GPT-output ingestion;
 - metric computation;
 - disagreement analysis; and
-- focused abbreviation re-audit.
+- the focused abbreviation re-audit.
 
-### Retained input
+The notebook `Attribute-BasedSemanticTypeDetectionDBKGSemTab2024MetadataToKG.ipynb` is associated with the preceding SemTab and Knowledge Graph work and is not included unless a direct Chapter 6 dependency is identified.
 
-#### `dataInputs/AnalysedColumnsKaggleViznetFiltered.xlsx`
+### `dataInputs`
 
-Consolidated Kaggle + VizNet Universe B input used to construct the Statistical Audit populations and reviewed set.
+#### `AnalysedColumnsKaggleViznetFiltered.xlsx`
 
-### Generated products
+Consolidated Kaggle + VizNet Universe B workbook containing the 118,639 attribute records used to define the FinalFormat-assigned universe, strict trivial subset, non-trivial audit universe, probability sample, and rare-format coverage cases.
 
-#### `dataProducts/KaggleViznet_95CI_StatAudit_UniverseAndSample.xlsx`
+#### `All_DQA_Execution_Log.xlsx`
 
-Sampling workbook containing the retained universe partitions, complete reviewed set, area and stratum summaries, and FinalFormat coverage summaries.
+Automatically generated execution log produced by the HeadersIQ DQA component.
 
-The workbook includes:
+Although this workbook is an output of the individual DQA executions, it is retained under `dataInputs` because it served as the source dataset for the forty-execution operational analysis reported in Chapter 6.
+
+It contains the execution-level metadata used to derive the reported analysis of:
+
+- dataset rows, columns, and analysed cells;
+- elapsed execution time;
+- rows, columns, and cells processed per second;
+- reported DQI outcomes;
+- violating-cell counts; and
+- HeadersIQ values.
+
+### `dataProducts`
+
+#### `KaggleViznet_95CI_StatAudit_UniverseAndSample.xlsx`
+
+Sampling workbook containing the retained universe partitions, reviewed set, area and stratum summaries, and FinalFormat coverage summaries.
+
+Its worksheets include:
 
 - `Nontrivial_Sample`
 - `Nontrivial_Universe`
@@ -187,132 +175,35 @@ The workbook includes:
 - `Formats_Summary_AfterCoverage`
 - `Formats_Added_ByCoverage`
 
-#### `dataProducts/GPTOutputsOn2295.xlsx`
+#### `GPTOutputsOn2295.xlsx`
 
 Completed GPT-assisted review workbook for the 2,295 reviewed columns. It retains the source fields, review-order reference, and completed `GPT_*` fields.
 
-#### `dataProducts/GPTAnalysisOn2295.xlsx`
+#### `GPTAnalysisOn2295.xlsx`
 
-Analysis workbook containing the global metrics, disagreement summaries, format-level results, area-level results, transition summaries, keyword suggestions, and supporting views used in the Statistical Audit analysis.
+Analysis workbook containing global metrics, disagreement summaries, format-level results, area-level results, format transitions, keyword suggestions, and supporting views used in the Statistical Audit analysis.
 
-#### `dataProducts/K_V_superset_suspicious_abbrev.xlsx`
+#### `K_V_superset_suspicious_abbrev.xlsx`
 
-Targeted 795-row Kaggle + VizNet superset slice containing the eleven abbreviation mappings selected for focused re-audit.
+Targeted 795-row Kaggle + VizNet superset slice containing the eleven suspicious abbreviation mappings selected for focused re-audit.
 
-#### `dataProducts/abbrev_review_summary.xlsx`
+#### `abbrev_review_summary.xlsx`
 
 Summary workbook containing the abbreviation re-audit decision counts and suggested alternative interpretations.
 
-## Operational DQA evaluation files
+### `dataProducts/operationalDQA/discoveries`
 
-### Code to upload
+This folder contains the ten latest Discoveries documents corresponding to the retained Chapter 6 executions.
 
-Upload to `code/operationalDQA/`:
+### `dataProducts/operationalDQA/dqaSummaries`
 
-- the notebook or script used to harmonise and analyse the forty retained execution records;
-- the notebook or script used to calculate descriptive statistics, Spearman correlations, and the log-log regression;
-- the notebook or script used to generate the runtime figures;
-- the notebook, script, or workbook used for the Ecommerce Events and Online Retail role-aware HeadersIQ sensitivity calculations; and
-- any supporting functions required to reproduce the reported Chapter 6 tables and figures.
+This folder contains the nine latest DQA summary workbooks corresponding to the retained Chapter 6 executions. No Samsung Heart Rate summary workbook is included because no DQI was reported for that case.
 
-Suggested names are:
+### `documentation`
 
-- `RuntimeAnalysis.ipynb`
-- `Generate_Runtime_Figures.ipynb`
-- `HeadersIQSensitivityAnalysis.ipynb`
+#### `HeadersIQ Code Runner User Guide.pdf`
 
-Use the original retained filenames when they already appear in the thesis, repository records, or generated outputs.
-
-### Input data to upload
-
-Upload to `dataInputs/operationalDQA/`:
-
-- `All_DQA_Execution_Log_Comparison.xlsx`, or the final harmonised forty-execution workbook used for Table 6.11 and the runtime analysis; and
-- any small retained input workbook required for the role-aware HeadersIQ sensitivity calculations.
-
-### Execution-analysis products to upload
-
-Upload to `dataProducts/operationalDQA/executionAnalysis/`:
-
-- the final statistical summary workbook;
-- the source table for the workload comparisons;
-- any retained regression-output file; and
-- any derived table used to produce the reported runtime results.
-
-### Figures to upload
-
-Upload to `dataProducts/operationalDQA/figures/`:
-
-- the final execution-time figure;
-- the log-log relationship figure;
-- the throughput figure;
-- the selected workload-comparison figure; and
-- any other Chapter 6 figure generated directly from the forty-execution analysis.
-
-Use the same figure numbers or filenames used in the thesis where practical.
-
-## Detailed case outputs
-
-Upload the ten Discoveries documents to:
-
-`dataProducts/operationalDQA/detailedCases/discoveries/`
-
-Upload the nine DQA summary workbooks to:
-
-`dataProducts/operationalDQA/detailedCases/dqaSummaries/`
-
-The ten detailed cases are:
-
-1. 622 UCI Datasets
-2. Samsung Heart Rate
-3. NFL Fantasy Data
-4. Doctoralia Brasil
-5. Hotel Bookings
-6. Online Retail
-7. F1 Pit Stops
-8. Ecommerce Events
-9. Household Power Consumption
-10. TMDB Movies
-
-The repository should contain one Discoveries document for each case and one DQA summary workbook for each case except Samsung Heart Rate.
-
-## Identifier-role sensitivity files
-
-Upload to `dataProducts/operationalDQA/identifierRoleSensitivity/`:
-
-- the retained calculation for Ecommerce Events;
-- the retained calculation for Online Retail;
-- any workbook or script showing the strict and role-aware HeadersIQ values; and
-- a short note identifying which duplicate-related findings were excluded and how overlapping DQI findings were handled.
-
-The role-aware recalculation must preserve:
-
-- the original analysed-cell denominator;
-- all missingness findings;
-- all non-identifier DQI findings; and
-- the existing overlap-control procedure.
-
-## Prompts
-
-Upload to `prompts/`:
-
-### `Appendix6_1_Final_Statistical_Audit_Prompt.txt`
-
-The final standardised prompt used for the complete 2,295-row GPT-assisted review. The prompt may retain its historical reference to the first 300 items because that wording formed part of the frozen instruction set.
-
-### `Appendix6_2_Abbreviation_Reaudit_Prompt.txt`
-
-The final standardised prompt used for the focused 795-row abbreviation re-audit.
-
-The prompt files should match the corresponding thesis appendices.
-
-## Code Runner documentation
-
-Upload to `documentation/`:
-
-### `Appendix6_3_HeadersIQ_Code_Runner_User_Guide.pdf`
-
-A standalone copy of the Code Runner User Guide reproduced in Appendix 6.3 of the thesis.
+Standalone copy of the HeadersIQ Code Runner User Guide reproduced in Appendix 6.3 of the thesis.
 
 The guide documents:
 
@@ -327,76 +218,30 @@ The guide documents:
 - privacy and security guidance; and
 - the quick user checklist.
 
-The guide documents the observable user-facing workflow. It does not replace source-code documentation or describe production server configuration.
+The guide documents the observable user-facing workflow. It does not describe the internal research implementation, production source code, or server configuration.
 
-## Artefact manifest
+## Traceability and reproducibility
 
-Create:
+The following Statistical Audit components are computationally reproducible from the retained inputs, notebooks, and completed workbooks:
 
-`documentation/Chapter6_Artefact_Manifest.md`
-
-The manifest should map each repository file to the thesis evidence it supports.
-
-Recommended structure:
-
-| Repository item | Research role | Thesis section, table, figure, or appendix |
-|---|---|---|
-| `DeepAnalysis_on118K.ipynb` | Statistical Audit construction and analysis | Sections 6.2.3 to 6.2.5; Algorithms 6.1 to 6.3 |
-| `GPTOutputsOn2295.xlsx` | Completed GPT-assisted review | Section 6.2.5 |
-| `GPTAnalysisOn2295.xlsx` | Audit metrics and disagreement summaries | Section 6.2.5 |
-| `abbrev_review_summary.xlsx` | Abbreviation re-audit summaries | Tables 6.9 and 6.10 |
-| Forty-execution log | Operational runtime evidence | Table 6.11 |
-| Runtime-analysis code | Correlations, regression, and figures | Section 6.3.3 |
-| Ten Discoveries documents | Narrative DQA evidence | Detailed DQA case analysis |
-| Nine DQA summary workbooks | Structured DQA evidence | Detailed DQA case analysis |
-| Identifier-role sensitivity files | Strict and role-aware HeadersIQ estimates | Table 6.14 |
-| Final audit prompt | Main GPT-assisted review protocol | Appendix 6.1 |
-| Abbreviation re-audit prompt | Focused abbreviation-review protocol | Appendix 6.2 |
-| Code Runner User Guide | Public operational workflow | Appendix 6.3 and Table 6.17 |
-
-## Reproduction notes
-
-Create:
-
-`documentation/Reproduction_Notes.md`
-
-Document:
-
-- the input file required for each notebook;
-- expected relative paths;
-- software and Python version, when known;
-- important package versions, when known;
-- random seed used for sampling;
-- execution order;
-- generated output files;
-- known environment assumptions;
-- whether Kaggle access is required;
-- which results are deterministic;
-- which GPT-assisted steps are only procedurally traceable;
-- the deployment environment relevant to the operational evaluation, where recorded; and
-- the location of the separately maintained Code Runner source code, when publicly available.
-
-## Reproducibility and repeatability
-
-The following components are computationally reproducible from the retained inputs and code:
-
+- abbreviation-field generation used by the audit;
 - universe partitioning;
 - fixed-seed probability sampling;
 - rare-format coverage checking;
-- workbook generation;
-- aggregation of completed GPT fields;
-- summary-table generation; and
-- statistical analysis of the retained execution log.
+- workbook generation; and
+- aggregation of the completed GPT review fields.
 
-The GPT-assisted annotation process is procedurally traceable but has limited repeatability because it was conducted through the ChatGPT web interface without API-level generation controls.
+Both GPT-assisted reviews are procedurally traceable but are not guaranteed to produce identical model-generated judgements if repeated through the ChatGPT web interface.
 
-The reported confidence interval quantifies sampling uncertainty under the stated probability-sampling design. It does not incorporate uncertainty arising from model judgement error, prompt sensitivity, stochastic model behaviour, model updates, or the informed-review protocol.
+The forty-execution analysis, detailed cross-case synthesis, and identifier-role sensitivity analysis are documented in Chapter 6 and supported by the retained execution log and nineteen dataset-level files. No separate executable analysis program is claimed where one was not retained.
 
 The public Code Runner supports operational inspection and use. Reproduction of the complete deployed application additionally depends on the separately maintained application source, dependencies, and environment-specific deployment configuration.
 
+Thesis tables and figures derived from these materials are reported in Chapter 6. They are not treated as separate repository artefacts unless an independently retained source file is included.
+
 ## Interpretation boundaries
 
-The Statistical Audit approval estimate applies to the 48,442-column non-trivial `FinalFormat`-assigned universe under the stated informed GPT-assisted review protocol. It should not be generalised automatically to:
+The Statistical Audit approval estimate applies to the 48,442-column non-trivial FinalFormat-assigned universe under the stated informed GPT-assisted review protocol. It should not be generalised automatically to:
 
 - the 53,763 strict trivial columns;
 - the 16,434 columns without an assigned `FinalFormat`;
@@ -407,20 +252,9 @@ The operational runtime analysis uses one retained successful execution per data
 
 The role-aware HeadersIQ results are sensitivity estimates. They do not retrospectively replace the strict scores produced by the operational implementation.
 
-## Data provenance and redistribution
+## Data provenance, privacy, and redistribution
 
 Original datasets may remain subject to their providers' licences and terms of use.
-
-This repository should contain only:
-
-- retained derived research inputs that can be shared;
-- generated research workbooks;
-- analysis code;
-- prompts;
-- figures;
-- selected outputs;
-- the Code Runner User Guide; and
-- supporting documentation.
 
 Do not upload:
 
@@ -436,52 +270,21 @@ Do not upload:
 - server logs containing IP addresses or submission information;
 - local absolute paths containing personal information;
 - restricted or non-redistributable original datasets; or
-- temporary files not used by the reported analysis.
+- temporary, duplicate, or superseded files.
 
 ## Related resources
 
 - HeadersIQ public entry page: https://headersiq.github.io/
 - HeadersIQ Code Runner: https://headersiq-runner.australiaeast.cloudapp.azure.com
-- HeadersIQ application source: add the final public source-code repository URL here before the frozen release, when available.
-- Chapter 5 research materials: add the final Chapter 5 repository URL here if cross-repository provenance is required.
 
-## Final repository checklist
-
-Before creating a frozen release:
-
-1. remove the two Chapter 5 Semantic Type Detection and Knowledge Graph notebooks from this Chapter 6 repository;
-2. confirm that `DeepAnalysis_on118K.ipynb` and the five Statistical Audit workbooks are present;
-3. upload the forty-execution log and operational-analysis code;
-4. upload the runtime figures and derived analysis products;
-5. upload the ten Discoveries documents;
-6. upload the nine DQA summary workbooks;
-7. upload the two identifier-role sensitivity calculations;
-8. upload the final Statistical Audit prompt;
-9. upload the final abbreviation re-audit prompt;
-10. upload the standalone Appendix 6.3 Code Runner User Guide;
-11. create the artefact manifest;
-12. create the reproduction notes;
-13. add the public Code Runner source link if a sanitised source repository is available;
-14. remove temporary, duplicate, superseded, private, or restricted files;
-15. confirm that filenames match the thesis artefact tables;
-16. verify that notebooks and workbooks open without corruption; and
-17. update this README if the final repository structure differs.
 
 ## Release
 
-After the final materials are uploaded, create a tagged release such as:
-
 `chapter6-v1.0`
 
-Suggested release title:
+**Chapter 6 Statistical Audit and DQA Evaluation Artefacts**
 
-`Chapter 6 Statistical Audit and DQA Evaluation Artefacts`
-
-Suggested release description:
-
-`Frozen release of the Statistical Audit, operational Data Quality Assessment evaluation, detailed case outputs, Code Runner documentation, and supporting research artefacts reported in Chapter 6.`
-
-When this repository is used in an anonymous submission, provide reviewers with an anonymised artefact copy or remove author-identifying metadata from the reviewer-facing version.
+> Frozen release of the Statistical Audit, operational Data Quality Assessment evaluation, detailed case outputs, Code Runner documentation, and supporting research artefacts reported in Chapter 6.
 
 ## Citation
 
@@ -489,8 +292,6 @@ Recommended thesis reference:
 
 Silva, M. V. (2026). *Statistical Audit and Data Quality Assessment evaluation code and supporting artefacts for Chapter 6*. GitHub repository: `HeadersIQ/Statistical-Audit-and-DQA-Evaluation`.
 
-A `CITATION.cff` file may include the author, thesis title, year, repository URL, version, institutional affiliation, and ORCID information where appropriate. For anonymous journal review, use a separate anonymised artefact copy or remove identifying metadata from the reviewer-facing version.
-
 ## Status
 
-This repository is a research-artefact collection. Some folders and files described in this README may be added while the final Chapter 6 archive is being completed.
+This repository is the Chapter 6 research-artefact collection for the Statistical Audit and operational DQA evaluation. Its final release contain only the retained files that directly support the reported chapter evidence.
