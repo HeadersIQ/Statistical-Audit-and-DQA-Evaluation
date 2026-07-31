@@ -1,4 +1,4 @@
-# Statistical Audit and DQA Evaluation
+# Statistical Audit and Data Quality Assessment Evaluation
 
 PhD thesis: Attribute-Based Approach for Semantic Type Detection and Data Quality Assessment in Diverse Data Sources and Domains
 Author: Marcelo Valentim Silva
