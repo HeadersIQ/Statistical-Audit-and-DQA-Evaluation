@@ -191,11 +191,11 @@ Targeted 795-row Kaggle + VizNet superset slice containing the eleven suspicious
 
 Summary workbook containing the abbreviation re-audit decision counts and suggested alternative interpretations.
 
-### `dataProducts/operationalDQA/discoveries`
+### `dataProducts/discoveries`
 
 This folder contains the ten latest Discoveries documents corresponding to the retained Chapter 6 executions.
 
-### `dataProducts/operationalDQA/dqaSummaries`
+### `dataProducts/summaryOfDQI`
 
 This folder contains the nine latest DQA summary workbooks corresponding to the retained Chapter 6 executions. No Samsung Heart Rate summary workbook is included because no DQI was reported for that case.
 
@@ -287,8 +287,6 @@ Do not upload:
 > Frozen release of the Statistical Audit, operational Data Quality Assessment evaluation, detailed case outputs, Code Runner documentation, and supporting research artefacts reported in Chapter 6.
 
 ## Citation
-
-Recommended thesis reference:
 
 Silva, M. V. (2026). *Statistical Audit and Data Quality Assessment evaluation code and supporting artefacts for Chapter 6*. GitHub repository: `HeadersIQ/Statistical-Audit-and-DQA-Evaluation`.
 
