@@ -1,6 +1,10 @@
 # Statistical Audit and DQA Evaluation
 
-This repository contains the research code, retained inputs, generated workbooks, prompts, execution records, selected dataset-level outputs, figures, and supporting documentation associated with the Statistical Audit and operational Data Quality Assessment evaluation reported in Chapter 6 of the HeadersIQ research project.
+PhD thesis: Attribute-Based Approach for Semantic Type Detection and Data Quality Assessment in Diverse Data Sources and Domains
+Author: Marcelo Valentim Silva
+University: Curtin University, Perth, Western Australia
+
+This repository contains the research code, retained inputs, generated workbooks, prompts, execution records, selected dataset-level outputs, figures, and supporting documentation associated with the Statistical Audit and operational Data Quality Assessment evaluation reported in Chapter 6 of the PhD thesis Attribute-Based Approach for Semantic Type Detection and Data Quality Assessment in Diverse Data Sources and Domains.
 
 The repository covers two complementary components:
 
