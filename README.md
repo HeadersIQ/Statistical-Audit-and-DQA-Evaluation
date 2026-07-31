@@ -1,19 +1,15 @@
-# Statistical Audit and Data Quality Assessment Evaluation
+# Statistical Audit and DQA Evaluation
 
-PhD thesis: Attribute-Based Approach for Semantic Type Detection and Data Quality Assessment in Diverse Data Sources and Domains
+**PhD thesis:** *Attribute-Based Approach for Semantic Type Detection and Data Quality Assessment in Diverse Data Sources and Domains*  
+**Author:** Marcelo Valentim Silva  
+**University:** Curtin University, Perth, Western Australia
 
-Author: Marcelo Valentim Silva
-
-University: Curtin University, Perth, Western Australia, Australia
-
-This repository contains the research code, retained inputs, generated workbooks, prompts, execution records, selected dataset-level outputs, figures, and supporting documentation associated with the Statistical Audit and operational Data Quality Assessment evaluation reported in Chapter 6 of the PhD thesis Attribute-Based Approach for Semantic Type Detection and Data Quality Assessment in Diverse Data Sources and Domains.
+This repository contains the research code, retained inputs, generated workbooks, prompts, execution records, selected dataset-level outputs, figures, and supporting documentation associated with the Statistical Audit and operational Data Quality Assessment evaluation reported in Chapter 6 of the PhD thesis *Attribute-Based Approach for Semantic Type Detection and Data Quality Assessment in Diverse Data Sources and Domains*.
 
 The repository covers two complementary components:
 
 1. the Statistical Audit of large-scale Semantic Type Detection assignments over the Kaggle + VizNet corpus; and
 2. the empirical operational evaluation of the HeadersIQ Data Quality Assessment component, including runtime analysis, detailed dataset cases, HeadersIQ sensitivity analysis, and evidence from the public HeadersIQ Code Runner.
-
-Author-identifying repository metadata is intentionally limited while related research outputs remain subject to anonymous review.
 
 ## Chapter 6 scope
 
@@ -485,17 +481,15 @@ Suggested release description:
 
 `Frozen release of the Statistical Audit, operational Data Quality Assessment evaluation, detailed case outputs, Code Runner documentation, and supporting research artefacts reported in Chapter 6.`
 
-Do not add personal citation metadata until the anonymous-review requirements have ended.
+When this repository is used in an anonymous submission, provide reviewers with an anonymised artefact copy or remove author-identifying metadata from the reviewer-facing version.
 
 ## Citation
 
-During anonymous review, repository-level citation metadata may remain neutral.
-
-The thesis may identify the scholarly author separately from the repository account:
+Recommended thesis reference:
 
 Silva, M. V. (2026). *Statistical Audit and Data Quality Assessment evaluation code and supporting artefacts for Chapter 6*. GitHub repository: `HeadersIQ/Statistical-Audit-and-DQA-Evaluation`.
 
-After anonymous review, add a `CITATION.cff` file containing the final author, title, year, repository URL, version, and ORCID information where appropriate.
+A `CITATION.cff` file may include the author, thesis title, year, repository URL, version, institutional affiliation, and ORCID information where appropriate. For anonymous journal review, use a separate anonymised artefact copy or remove identifying metadata from the reviewer-facing version.
 
 ## Status
 
